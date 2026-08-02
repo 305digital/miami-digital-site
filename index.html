@@ -252,11 +252,11 @@
         <ul class="contact-points">
           <li>
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M2.5 5.5l7.5 5 7.5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><rect x="2.5" y="4" width="15" height="12" rx="1.8" stroke="currentColor" stroke-width="1.6"/></svg>
-            <a href="mailto:hello@miamidigital.studio">hello@miamidigital.studio</a>
+            <a href="mailto:info@himiamidigital.com">info@himiamidigital.com</a>
           </li>
           <li>
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 2.5h3l1.5 4-2 1.3a10 10 0 004.7 4.7l1.3-2 4 1.5v3a1.5 1.5 0 01-1.6 1.5A14 14 0 012.5 4.1 1.5 1.5 0 014 2.5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
-            <span>(305) 555-0148</span>
+            <span>(786) 383-2754</span>
           </li>
           <li>
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2a6 6 0 00-6 6c0 4.5 6 10 6 10s6-5.5 6-10a6 6 0 00-6-6z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="10" cy="8" r="2" stroke="currentColor" stroke-width="1.6"/></svg>
@@ -265,7 +265,8 @@
         </ul>
       </div>
 
-      <form class="contact-form reveal" id="contact-form" novalidate>
+      <form class="contact-form reveal" id="contact-form" novalidate action="https://formspree.io/f/meeybvaw" method="POST">
+        <input type="hidden" name="_subject" value="New quote request — Miami Digital site">
         <div class="form-row">
           <label for="name">Name</label>
           <input type="text" id="name" name="name" placeholder="Your name" required>
@@ -282,10 +283,11 @@
           <label for="message">What do you need?</label>
           <textarea id="message" name="message" rows="4" placeholder="A new website, online booking, a redesign — tell us what you're after." required></textarea>
         </div>
-        <button type="submit" class="btn btn-primary btn-large btn-full">
+        <button type="submit" class="btn btn-primary btn-large btn-full" id="form-submit-btn">
           Send &amp; get my free quote
         </button>
         <p class="form-note">We'll never share your info. Usually reply within one business day.</p>
+        <p class="form-error" id="form-error" hidden>Something went wrong sending your message — please try again, or email us directly.</p>
 
         <div class="form-success" id="form-success" hidden>
           <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="19" stroke="#00C2A8" stroke-width="2"/><path d="M12 20.5l5.5 5.5L28 14" stroke="#00C2A8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>

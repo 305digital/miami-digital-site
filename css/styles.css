@@ -516,6 +516,17 @@ button { font: inherit; cursor: pointer; }
   margin-top: 14px;
 }
 
+.form-error {
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--coral-dark);
+  background: #FFF0EC;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  margin-top: 14px;
+}
+
 .form-success {
   position: absolute;
   inset: 0;

@@ -43,16 +43,40 @@ const io = new IntersectionObserver((entries) => {
 
 revealEls.forEach(el => io.observe(el));
 
-// Contact form: front-end only success state (no backend wired up yet)
+// Contact form: submits to Formspree via fetch, shows inline success/error
 const form = document.getElementById('contact-form');
 const success = document.getElementById('form-success');
+const errorMsg = document.getElementById('form-error');
+const submitBtn = document.getElementById('form-submit-btn');
 
-form.addEventListener('submit', (e) => {
+form.addEventListener('submit', async (e) => {
   e.preventDefault();
   if (!form.checkValidity()) {
     form.reportValidity();
     return;
   }
-  success.hidden = false;
-  form.reset();
+
+  errorMsg.hidden = true;
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Sending…';
+
+  try {
+    const response = await fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (response.ok) {
+      success.hidden = false;
+      form.reset();
+    } else {
+      errorMsg.hidden = false;
+    }
+  } catch (err) {
+    errorMsg.hidden = false;
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Send & get my free quote';
+  }
 });
