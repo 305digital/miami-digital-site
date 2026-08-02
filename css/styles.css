@@ -414,9 +414,9 @@ button { font: inherit; cursor: pointer; }
 .portfolio-card .browser-mock { box-shadow: var(--shadow-sm); transition: box-shadow 0.3s var(--ease); }
 .portfolio-card:hover .browser-mock { box-shadow: var(--shadow-md); }
 
-.pf-cafe { background: linear-gradient(160deg, #FFF4E8, #FFE3D6); min-height: 170px; padding: 22px; }
-.pf-clinic { background: linear-gradient(160deg, #EAF6F4, #DFF3EE); min-height: 170px; padding: 22px; }
-.pf-studio { background: linear-gradient(160deg, #EEF1FF, #E4E9FF); min-height: 170px; padding: 22px; }
+.pf-nails { background: linear-gradient(160deg, #FFF4E8, #FFE3D6); min-height: 170px; padding: 22px; }
+.pf-beauty { background: linear-gradient(160deg, #EAF6F4, #DFF3EE); min-height: 170px; padding: 22px; }
+.pf-brows { background: linear-gradient(160deg, #EEF1FF, #E4E9FF); min-height: 170px; padding: 22px; }
 
 .portfolio-meta {
   display: flex;
