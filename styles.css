@@ -375,8 +375,10 @@ button { font: inherit; cursor: pointer; }
 /* Services */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 28px;
+  max-width: 680px;
+  margin: 0 auto;
 }
 .service-card {
   background: var(--white);
