@@ -209,12 +209,37 @@ button { font: inherit; cursor: pointer; }
 .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 /* ---------- Hero ---------- */
-.hero { padding: 64px 0 88px; }
-.hero-inner {
-  display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: 56px;
+.hero { position: relative; overflow: hidden; }
+.hero-photo-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center 60%;
+}
+.hero-photo-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(14,21,34,0.15), transparent 30%);
+}
+.hero-photo-wrap {
+  position: relative;
+  min-height: 620px;
+  display: flex;
   align-items: center;
+  justify-content: flex-end;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+.hero-card {
+  max-width: 460px;
+  background: rgba(14,21,34,0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.22);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  box-shadow: var(--shadow-lg);
 }
 
 .hero-brand {
@@ -231,6 +256,7 @@ button { font: inherit; cursor: pointer; }
   color: var(--ink);
 }
 .hero-brand-text strong { font-weight: 800; }
+.hero-card .hero-brand-text { color: #fff; }
 
 .eyebrow {
   display: inline-block;
@@ -247,15 +273,16 @@ button { font: inherit; cursor: pointer; }
 .eyebrow-light { background: rgba(255,255,255,0.1); color: #FFC4B4; }
 
 .hero h1 {
-  font-size: clamp(2.3rem, 4.6vw, 3.6rem);
-  margin-bottom: 20px;
+  font-size: clamp(1.9rem, 3.4vw, 2.5rem);
+  color: #fff;
+  margin-bottom: 18px;
 }
 
 .hero-sub {
-  font-size: 1.12rem;
-  color: var(--ink-soft);
+  font-size: 1.02rem;
+  color: rgba(255,255,255,0.82);
   max-width: 480px;
-  margin-bottom: 32px;
+  margin-bottom: 28px;
 }
 
 .hero-cta-row { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 36px; }
@@ -282,8 +309,15 @@ button { font: inherit; cursor: pointer; }
 .hero-trust:hover .hero-trust-arrow { border-color: var(--coral); transform: translateY(2px); }
 .hero-trust p { font-size: 0.86rem; }
 
-/* Hero visual / browser mock */
-.hero-visual { position: relative; }
+.hero-trust-light { color: rgba(255,255,255,0.75); }
+.hero-trust-light:hover { color: #fff; }
+.hero-trust-light .hero-trust-arrow { border-color: rgba(255,255,255,0.35); }
+.hero-trust-light:hover .hero-trust-arrow { border-color: #fff; }
+
+.btn-ghost-light { color: #fff; border-color: rgba(255,255,255,0.4); }
+.btn-ghost-light:hover { border-color: #fff; }
+
+/* Browser mock (reused by portfolio) */
 .browser-mock {
   background: var(--white);
   border-radius: var(--radius-md);
@@ -291,12 +325,6 @@ button { font: inherit; cursor: pointer; }
   box-shadow: var(--shadow-lg);
   overflow: hidden;
 }
-.hero-browser {
-  transform: rotate(1.2deg);
-  transition: transform 0.5s var(--ease);
-}
-.hero-visual:hover .hero-browser { transform: rotate(0deg) scale(1.01); }
-
 .browser-bar {
   display: flex;
   align-items: center;
@@ -320,29 +348,6 @@ button { font: inherit; cursor: pointer; }
 }
 
 .browser-body { padding: 26px; }
-.hero-browser-body { background: linear-gradient(160deg, #FFF7F5 0%, #F1FBF9 100%); min-height: 300px; }
-
-.mock-nav {
-  height: 10px;
-  width: 40%;
-  background: var(--border);
-  border-radius: 4px;
-  margin-bottom: 34px;
-}
-.mock-hero { display: flex; flex-direction: column; gap: 12px; }
-.mock-line { height: 14px; border-radius: 5px; background: linear-gradient(90deg, var(--border), #EFEDE4); }
-.mock-line-lg { width: 80%; height: 22px; background: linear-gradient(90deg, var(--teal-bright), var(--coral)); opacity: 0.85; }
-.mock-line-md { width: 55%; }
-.mock-line-sm { width: 45%; }
-.mock-btn {
-  margin-top: 10px;
-  width: 120px;
-  height: 34px;
-  border-radius: 999px;
-  background: var(--coral);
-  opacity: 0.9;
-}
-
 .float-badge {
   position: absolute;
   display: flex;
@@ -357,8 +362,8 @@ button { font: inherit; cursor: pointer; }
   font-weight: 600;
   animation: float 4.5s ease-in-out infinite;
 }
-.badge-top { top: -18px; right: 18px; animation-delay: 0.2s; }
-.badge-bottom { bottom: -16px; left: -10px; animation-delay: 1s; }
+.badge-top { top: 48px; right: 48px; animation-delay: 0.2s; }
+.badge-bottom { bottom: 48px; left: 48px; animation-delay: 1s; }
 .badge-dot {
   width: 8px; height: 8px; border-radius: 50%;
   background: var(--teal-bright);
@@ -544,34 +549,6 @@ button { font: inherit; cursor: pointer; }
 .why-item h3 { font-size: 1.1rem; margin-bottom: 8px; }
 .why-item p { color: var(--ink-soft); font-size: 0.95rem; }
 
-/* ---------- Miami band ---------- */
-.miami-band {
-  position: relative;
-  height: 340px;
-  overflow: hidden;
-}
-.miami-band img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 65%;
-}
-.miami-band-overlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: flex-end;
-  padding: 32px;
-  background: linear-gradient(0deg, rgba(14,21,34,0.75), transparent 55%);
-}
-.miami-band-text {
-  color: #fff;
-  font-family: 'Sora', sans-serif;
-  font-weight: 600;
-  font-size: 1.15rem;
-  max-width: 480px;
-}
-
 /* ---------- Contact ---------- */
 .section-contact {
   background: var(--navy);
@@ -727,8 +704,8 @@ button { font: inherit; cursor: pointer; }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 980px) {
-  .hero-inner { grid-template-columns: 1fr; }
-  .hero-visual { order: -1; max-width: 480px; margin: 0 auto; }
+  .hero-photo-wrap { justify-content: center; min-height: 560px; }
+  .hero-card { max-width: 520px; }
   .why-inner { grid-template-columns: 1fr; gap: 40px; }
   .contact-inner { grid-template-columns: 1fr; gap: 44px; }
   .services-grid { grid-template-columns: 1fr 1fr; }
@@ -760,13 +737,12 @@ button { font: inherit; cursor: pointer; }
   .portfolio-grid { grid-template-columns: 1fr; }
   .why-grid { grid-template-columns: 1fr; }
   .section { padding: 72px 0; }
-  .hero { padding: 40px 0 64px; }
   .contact-form { padding: 26px; }
+  .hero-photo-wrap { min-height: 480px; padding-top: 24px; padding-bottom: 24px; }
+  .hero-card { padding: 28px; max-width: 100%; }
   .float-badge { font-size: 0.72rem; padding: 8px 12px; }
-  .badge-top { top: -14px; right: 8px; }
-  .badge-bottom { bottom: -14px; left: -6px; }
-  .miami-band { height: 220px; }
-  .miami-band-text { font-size: 1rem; max-width: 100%; }
+  .badge-top { top: 20px; right: 20px; }
+  .badge-bottom { bottom: 20px; left: 20px; }
 }
 
 @media (max-width: 420px) {
